@@ -129,6 +129,7 @@ public class GameLogic {
 				return true;
 			}
 			gameState = (winnerPlayer == Player.P1) ? GameState.P1_WINS : GameState.P2_WINS;
+			logger.debug("Game finishes! The winner is " + winnerPlayer.getPlayerDescription());
 			return true;
 		}
 		return false;
