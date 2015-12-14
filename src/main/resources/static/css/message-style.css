@@ -1,0 +1,54 @@
+.winnerP1, .winnerP2, .draw, .P1, .P2, .error {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding: 15px 10px 15px 50px;
+}
+
+.winnerP1, .winnerP2, .draw {
+	background-color: #ABABAB;
+}
+
+.winnerP1 {
+	color: #BDE5F8;
+}
+
+.winnerP2 {
+	color: #DFF2BF;
+}
+
+.draw {
+	color: #000000;
+}
+
+.P1 {
+	color: #00529B;
+	background-color: #BDE5F8;
+}
+
+.P2 {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+}
+
+.error {
+	color: #D8000C;
+	background-color: #FFBABA;
+}
+
+.button-start {
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-start {
+	background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}

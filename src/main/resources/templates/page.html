@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="bolGame">
+<head>
+<title>Hello Spring Boot!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="js/angular.min.js"></script>
+<script src="js/bol-game-angular.js"></script>
+<script src="js/common-methods.js"></script>
+<link href="css/message-style.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container"
+		ng-controller="AngularJSController as controller">
+
+
+		<!-- Div for messages -->
+		<div class="alert form-messages {{controller.formMessageClass}} alert-dismissable"
+			ng-show="controller.message">
+			{{ controller.message }}
+		</div>
+		<div style="margin-left: 250px;" ng-show="controller.gameState == 'ON_GAME'">
+			<img src="img/arrowP1.gif"  width="125px" />
+		</div>
+	
+		<div
+			style="height: 90px; color: white; width: 20px; padding: 20px; margin: 10px; float: left;"
+			ng-style="{ 'background-color' : (controller.turn == 'P1') ? '#098DEA' : '#BEBEBE'}">
+			{{controller.largePitP1}}
+		</div>
+		<div
+			style="color: white; width: 20px; padding: 20px; margin: 10px; float: left;"
+			ng-repeat="pit in controller.pitsP1  track by $index "
+			ng-click="controller.turn == 'P2' || controller.move(controller.pitsP1.length - 1-$index)"
+			ng-style="{ 'background-color' : (controller.turn == 'P1') ? '#098DEA' : '#BEBEBE'}">
+
+			{{pit}}
+		</div>
+
+		<div style="width: 20px; padding: 20px; float: none; visibility: hidden;">
+			Player2
+		</div>
+		<div style="margin-top: -90px;">
+			<div
+				style="margin: 10px; color: white; width: 20px; padding: 20px; float: left;"
+				ng-repeat="pit in controller.pitsP2 track by $index"
+				ng-click="controller.turn == 'P1' ||controller.move($index+7)"
+				ng-style="{ 'background-color' : (controller.turn == 'P2') ? '#4C9900' : '#BEBEBE' }">
+
+				{{pit}}
+			</div>
+			<div
+				style="height: 90px; color: white; width: 20px; padding: 20px; margin: 10px; float: left; margin-top: -90px;"
+				ng-style="{ 'background-color' : (controller.turn == 'P2') ? '#4C9900' : '#BEBEBE' }">
+				{{controller.largePitP2}}
+			</div>
+				
+		</div>
+		
+		<div style="margin-left: 250px;margin-top: 90px;" ng-show="controller.gameState == 'ON_GAME'">
+			<img src="img/arrowP2.gif"  width="125px" />
+		</div>
+		
+		<div ng-click="controller.reset()" style="float:none;color: black; width: 150px; padding: 20px; margin-top: 90px;background-color: rgb(235, 185, 10);">START GAME</div>
+	
+	
+	</div>
+</body>
+</html>
