@@ -1,5 +1,7 @@
 package com.mcorvo.bol.domain;
 
+import java.io.Serializable;
+
 /**
  * Pit from the game. Every Pit will keep its position, the quantity of stones that has currently and the owner.
  * 
@@ -7,7 +9,10 @@ package com.mcorvo.bol.domain;
  * @author Miguel.Diaz
  *
  */
-public class Pit {
+public class Pit implements Serializable{
+
+	private static final long serialVersionUID = 5697934426300083771L;
+	
 	Player owner;
 	int position;
 	int amountStones;

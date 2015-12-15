@@ -1,12 +1,16 @@
 package com.mcorvo.bol.domain;
 
+import java.io.Serializable;
+
 /**
  * Object useful for the Controller to send the error message back to the view.
  * 
  * @author Miguel.Diaz
  *
  */
-public class GameError {
+public class GameError implements Serializable{
+	
+	private static final long serialVersionUID = -4591534250852005152L;
 	
 	String errorMessage;
 

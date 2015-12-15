@@ -1,5 +1,6 @@
 package com.mcorvo.bol.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,12 @@ import com.mcorvo.bol.logic.GameLogic;
  * @author Miguel.Diaz
  *
  */
-public class Board {
+public class Board implements Serializable{
+	private static final long serialVersionUID = -5734120396616912334L;
+
 	final static Logger logger = Logger.getLogger(Board.class);
 	
-	private static final int SMALL_PITS_PER_PLAYER = 6;
+	public static final int SMALL_PITS_PER_PLAYER = 6;
 	public static final int INIT_STONES_PER_PIT = 6;
 	public static final int DEFAULT_BOARD_SIZE = 2 * (SMALL_PITS_PER_PLAYER+1);
 	
@@ -100,9 +103,12 @@ public class Board {
 	
 	/**
 	 * Sums the stones from all the pits(Pits & LargePit) from an specific Player
+	 * 
+	 * Not needed anymore
 	 * @param player
 	 * @return number of total stones
 	 */
+	@Deprecated
 	public int sumPitsAndLargePit(Player player) {	
 		return sumPits(player)+getLargePit(player).getAmountStones();
 	}
@@ -166,7 +172,7 @@ public class Board {
 		for(Pit pit:listPits){
 			text +=pit.getAmountStones()+",";
 		}
-		return text.substring(0, text.length()-2)+"]";
+		return text.substring(0, text.length()-1)+" ]";
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.mcorvo.bol.logic;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -19,7 +20,9 @@ import com.mcorvo.bol.exceptions.InvalidMoveException;
  *
  */
 @Component
-public class GameLogic {
+public class GameLogic implements Serializable{
+
+	private static final long serialVersionUID = 2452737988623786814L;
 
 	final static Logger logger = Logger.getLogger(GameLogic.class);
 
@@ -87,6 +90,7 @@ public class GameLogic {
 		}
 	}
 
+	
 	/**
 	 * 
 	 * @param player
@@ -103,8 +107,6 @@ public class GameLogic {
 	}
 
 	
-
-
 	/**
 	 * Check if the player has already stones. 
 	 * If doesn't have, the game is finish and calculates the total score of each player do determine the winner.
@@ -116,18 +118,29 @@ public class GameLogic {
 		if (getBoard().isPlayerWithoutStones(player)) {
 			// calculate real winner
 			int stonesFromPlayer = getBoard().getLargePit(player).getAmountStones();
-			int stonesFromRival = getBoard().sumPitsAndLargePit(player.getRival());
+			//int stonesFromRival = getBoard().sumPitsAndLargePit(player.getRival());
 			
-			if(stonesFromPlayer>stonesFromRival){
+			//There are always the same amount of stones in the game(36*2). If the player has more, it's the winner
+			int totalAmountOfStones = Board.INIT_STONES_PER_PIT*Board.SMALL_PITS_PER_PLAYER;
+			if(stonesFromPlayer>totalAmountOfStones){
 				winnerPlayer=player;
-			}else if(stonesFromPlayer<stonesFromRival){
-				winnerPlayer=player.getRival();
-			}else{
-				//If they have the same score, it's a DRAW. Updates gameState and finishes the game.
+			}else if(stonesFromPlayer==totalAmountOfStones){
 				gameState = GameState.DRAW;
 				logger.debug("Game finishes as DRAW!");
 				return true;
+			}else{
+				winnerPlayer=player.getRival();
 			}
+//			if(stonesFromPlayer>stonesFromRival){
+//				winnerPlayer=player;
+//			}else if(stonesFromPlayer<stonesFromRival){
+//				winnerPlayer=player.getRival();
+//			}else{
+//				//If they have the same score, it's a DRAW. Updates gameState and finishes the game.
+//				gameState = GameState.DRAW;
+//				logger.debug("Game finishes as DRAW!");
+//				return true;
+//			}
 			gameState = (winnerPlayer == Player.P1) ? GameState.P1_WINS : GameState.P2_WINS;
 			logger.debug("Game finishes! The winner is " + winnerPlayer.getPlayerDescription());
 			return true;

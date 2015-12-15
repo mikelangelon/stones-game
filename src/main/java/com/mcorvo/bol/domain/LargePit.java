@@ -7,6 +7,8 @@ package com.mcorvo.bol.domain;
  */
 public class LargePit extends Pit{
 
+	private static final long serialVersionUID = -2674312262259047246L;
+
 	/**
 	 * Constructor of the LargePit
 	 * 
