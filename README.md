@@ -10,6 +10,14 @@ To play:
 
 http://localhost:8080
 
+Future improvements. Could be plenty of, but the main ones are:
+
+- Allow playing in different computers. It's not really difficult.
+- Implement the State Design Pattern instead of using all this checks for the GameState
+- The Design of the view could be much much better.
+- 1000 more changes.
+
+
 
 
 
